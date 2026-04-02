@@ -51,11 +51,6 @@
             50% { transform: scale(1); }
         }
 
-        @keyframes shimmer {
-            0% { background-position: -1000px 0; }
-            100% { background-position: 1000px 0; }
-        }
-
         @keyframes swirl {
             0% { transform: rotate(0deg) translateX(100px) rotate(0deg); opacity: 0; }
             10% { opacity: 1; }
@@ -79,42 +74,78 @@
             50% { transform: scaleY(0.1); }
         }
 
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
         /* ===== STEP 1: MAGICAL ENTRY ===== */
         .step-1 {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #FFB6D9 0%, #FFB6D9 35%, #E6B3FF 65%, #E6B3FF 100%);
+            background: linear-gradient(45deg, #FFB6D9 0%, #FFD9E8 15%, #E6B3FF 35%, #D9B3FF 50%, #C9A0FF 70%, #FFB6D9 85%, #FFB6D9 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             position: relative;
             overflow: hidden;
             cursor: pointer;
         }
 
-        .step-1::before {
-            content: '';
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Animated Background Elements */
+        .blob-1 {
             position: absolute;
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: float 6s ease-in-out infinite;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 182, 193, 0.15) 0%, transparent 70%);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation: blob-animation 8s ease-in-out infinite;
             top: 10%;
             left: 10%;
-            opacity: 0.3;
+            opacity: 0.6;
         }
 
-        .step-1::after {
-            content: '';
+        .blob-2 {
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 40px 40px;
-            animation: float 8s ease-in-out infinite reverse;
-            bottom: 5%;
-            right: 5%;
-            opacity: 0.3;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle at 70% 70%, rgba(217, 179, 255, 0.15) 0%, transparent 70%);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: blob-animation-2 10s ease-in-out infinite;
+            bottom: 10%;
+            right: 10%;
+            opacity: 0.6;
+        }
+
+        @keyframes blob-animation {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        @keyframes blob-animation-2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, 30px) scale(1.1); }
         }
 
         .entry-container {
@@ -135,7 +166,7 @@
         }
 
         .cartoon-character:hover {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         /* Cartoon Body */
@@ -143,14 +174,15 @@
             position: absolute;
             width: 200px;
             height: 220px;
-            background: linear-gradient(135deg, #FFE4E1 0%, #FFB6D9 100%);
+            background: linear-gradient(135deg, #FFE4E1 0%, #FFB6D9 50%, #FFB6D9 100%);
             border-radius: 60px 60px 80px 80px;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3),
-                        inset -5px -5px 15px rgba(255, 105, 180, 0.2);
-            border: 3px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.25),
+                        inset -5px -5px 15px rgba(255, 105, 180, 0.15),
+                        inset 5px 5px 15px rgba(255, 255, 255, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.7);
         }
 
         /* Cartoon Head */
@@ -164,8 +196,9 @@
             left: 50%;
             transform: translateX(-50%);
             box-shadow: 0 15px 40px rgba(255, 105, 180, 0.25),
-                        inset -3px -3px 10px rgba(255, 105, 180, 0.2);
-            border: 3px solid rgba(255, 255, 255, 0.6);
+                        inset -3px -3px 10px rgba(255, 105, 180, 0.15),
+                        inset 3px 3px 10px rgba(255, 255, 255, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.7);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -196,7 +229,7 @@
         .pupil {
             width: 25px;
             height: 35px;
-            background: #FF69B4;
+            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
             border-radius: 50%;
             position: relative;
         }
@@ -220,7 +253,7 @@
             position: absolute;
             width: 20px;
             height: 20px;
-            background: #FFB6D9;
+            background: linear-gradient(135deg, #FFB6D9 0%, #FF69B4 100%);
             border-radius: 50%;
             bottom: 50px;
             left: 50%;
@@ -251,7 +284,7 @@
             position: absolute;
             width: 30px;
             height: 15px;
-            background: #FF69B4;
+            background: linear-gradient(135deg, #FF69B4 0%, #FFB6D9 100%);
             border-radius: 0 0 15px 15px;
             bottom: -8px;
             left: 50%;
@@ -266,7 +299,8 @@
             background: linear-gradient(135deg, #FFB6D9 0%, #FF69B4 100%);
             border-radius: 50%;
             top: -10px;
-            box-shadow: inset 0 0 10px rgba(255, 105, 180, 0.3);
+            box-shadow: inset 0 0 10px rgba(255, 105, 180, 0.3),
+                        0 5px 15px rgba(255, 105, 180, 0.2);
         }
 
         .ear-left {
@@ -299,7 +333,8 @@
             background: linear-gradient(135deg, #FFE4E1 0%, #FFB6D9 100%);
             border-radius: 50px;
             top: 150px;
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2),
+                        inset -2px 0 5px rgba(255, 105, 180, 0.1);
         }
 
         .arm-left {
@@ -324,57 +359,65 @@
             left: 50%;
             transform: translateX(-50%);
             box-shadow: 0 5px 10px rgba(255, 105, 180, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.7);
         }
 
         /* Speech Bubble */
         .speech-bubble {
             position: absolute;
-            background: white;
-            border-radius: 20px;
-            padding: 15px 20px;
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
-            top: -80px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FFF5F7 100%);
+            border-radius: 25px;
+            padding: 18px 25px;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.25),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            top: -100px;
             left: 50%;
             transform: translateX(-50%);
             white-space: nowrap;
-            border: 2px solid #FFB6D9;
+            border: 2px solid rgba(255, 182, 193, 0.4);
             animation: float 2s ease-in-out infinite;
+            backdrop-filter: blur(10px);
         }
 
         .speech-bubble::after {
             content: '';
             position: absolute;
-            bottom: -12px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
             border-left: 15px solid transparent;
             border-right: 15px solid transparent;
-            border-top: 15px solid white;
+            border-top: 15px solid #FFFFFF;
         }
 
         .speech-text {
-            color: #FF69B4;
-            font-weight: 700;
-            font-size: 14px;
+            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            font-size: 15px;
             letter-spacing: 0.5px;
         }
 
         .entry-text {
-            font-size: 28px;
-            color: #FF69B4;
-            font-weight: 700;
+            font-size: 22px;
+            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
             margin-top: 20px;
             letter-spacing: 1px;
         }
 
         .entry-subtext {
-            font-size: 16px;
+            font-size: 15px;
             color: #D9B6FF;
             margin-top: 15px;
-            font-weight: 500;
+            font-weight: 600;
             animation: fadeInUp 1s ease-out 0.3s both;
         }
 
@@ -388,17 +431,57 @@
         .heart-2 { top: 70%; right: 10%; animation-delay: 1s; }
         .heart-3 { top: 50%; right: 5%; animation-delay: 2s; }
 
+        /* Watermark */
+        .watermark {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 14px;
+            color: rgba(255, 105, 180, 0.4);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            z-index: 1;
+            animation: fadeInUp 1.5s ease-out 0.8s both;
+        }
+
         /* ===== STEP 2: LOVE LETTER ===== */
         .step-2 {
             display: none;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #FFB6D9 0%, #FFB6D9 35%, #E6B3FF 65%, #E6B3FF 100%);
+            background: linear-gradient(135deg, #FFB6D9 0%, #FFD9E8 15%, #E6B3FF 35%, #D9B3FF 50%, #C9A0FF 70%, #FFB6D9 85%, #FFB6D9 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             padding: 20px;
             position: relative;
             overflow: hidden;
             cursor: pointer;
+        }
+
+        .blob-3 {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 182, 193, 0.1) 0%, transparent 70%);
+            border-radius: 45% 55% 60% 40% / 55% 45% 55% 45%;
+            animation: blob-animation 12s ease-in-out infinite;
+            top: 20%;
+            left: 5%;
+            opacity: 0.5;
+        }
+
+        .blob-4 {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at 50% 50%, rgba(217, 179, 255, 0.1) 0%, transparent 70%);
+            border-radius: 60% 40% 50% 50% / 40% 60% 40% 60%;
+            animation: blob-animation-2 14s ease-in-out infinite;
+            bottom: 15%;
+            right: 5%;
+            opacity: 0.5;
         }
 
         .page-wrapper {
@@ -413,49 +496,199 @@
             animation: fadeInUp 0.8s ease-out;
         }
 
-        /* Left Side - Decorative Illustration */
+        /* Left Side - Cute Cartoon Characters */
         .illustration-side {
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            height: 400px;
         }
 
-        .decorative-circle {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, #FFF0F5 0%, #FFFFFF 50%, #F0E6FF 100%);
+        /* Tanaz (Pink Character) */
+        .character-tanaz {
+            position: absolute;
+            left: 0;
+        }
+
+        /* Shabit (Blue Character) */
+        .character-shabit {
+            position: absolute;
+            right: 0;
+        }
+
+        /* Shared Character Styles */
+        .char-head {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.25),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.6);
             position: relative;
-            animation: breathe 4s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 3px solid rgba(255, 255, 255, 0.6);
+            margin-bottom: 15px;
         }
 
-        .decorative-circle::before {
+        .char-head-tanaz {
+            background: linear-gradient(135deg, #FFB6D9 0%, #FF69B4 100%);
+        }
+
+        .char-head-shabit {
+            background: linear-gradient(135deg, #B3D9FF 0%, #69B4FF 100%);
+        }
+
+        /* Character Eyes */
+        .char-eyes {
+            display: flex;
+            gap: 20px;
+            position: absolute;
+            top: 35px;
+        }
+
+        .char-eye {
+            width: 20px;
+            height: 25px;
+            background: white;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .char-pupil {
+            width: 12px;
+            height: 15px;
+            background: black;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .char-pupil::after {
             content: '';
             position: absolute;
-            width: 250px;
-            height: 250px;
-            border: 3px dashed rgba(255, 182, 193, 0.3);
+            width: 4px;
+            height: 5px;
+            background: white;
             border-radius: 50%;
-            animation: float 5s ease-in-out infinite;
+            top: 2px;
+            left: 3px;
         }
 
-        .decorative-circle::after {
-            content: '';
+        /* Character Nose */
+        .char-nose {
             position: absolute;
-            width: 320px;
-            height: 320px;
-            border: 2px solid rgba(255, 182, 193, 0.2);
+            width: 8px;
+            height: 8px;
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 50%;
+            top: 60px;
         }
 
-        .letter-emoji {
-            font-size: 120px;
-            animation: float 4s ease-in-out infinite;
+        /* Character Mouth */
+        .char-mouth {
+            position: absolute;
+            width: 35px;
+            height: 20px;
+            bottom: 20px;
+            border: 2px solid rgba(0, 0, 0, 0.4);
+            border-top: none;
+            border-radius: 0 0 35px 35px;
+        }
+
+        /* Character Body */
+        .char-body {
+            width: 100px;
+            height: 140px;
+            border-radius: 40px 40px 50px 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .char-body-tanaz {
+            background: linear-gradient(135deg, #FFE4E1 0%, #FFB6D9 100%);
+        }
+
+        .char-body-shabit {
+            background: linear-gradient(135deg, #D9E8FF 0%, #B3D9FF 100%);
+        }
+
+        /* Character Outfit */
+        .char-outfit {
+            width: 90px;
+            height: 70px;
+            border-radius: 20px 20px 30px 30px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+        }
+
+        .outfit-tanaz {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .outfit-shabit {
+            background: linear-gradient(135deg, #87CEEB 0%, #4169E1 100%);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Character Arms */
+        .char-arms {
+            position: absolute;
+            width: 110px;
+            display: flex;
+            justify-content: space-between;
+            top: 85px;
+        }
+
+        .char-arm {
+            width: 30px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.8) 0%, rgba(255, 105, 180, 0.8) 100%);
+            border-radius: 20px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .char-arm-shabit {
+            background: linear-gradient(135deg, rgba(179, 217, 255, 0.8) 0%, rgba(105, 180, 255, 0.8) 100%);
+        }
+
+        /* Speech Bubbles for Characters */
+        .char-speech {
+            position: absolute;
+            background: white;
+            border-radius: 15px;
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #FF69B4;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            white-space: nowrap;
+            min-width: 120px;
+            text-align: center;
+            border: 2px solid rgba(255, 182, 193, 0.3);
+        }
+
+        .speech-tanaz {
+            top: -60px;
+            left: -30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .speech-shabit {
+            top: -60px;
+            right: -30px;
+            color: #4169E1;
+            animation: float 3s ease-in-out infinite 0.5s;
         }
 
         /* Right Side - Letter Content */
@@ -466,15 +699,16 @@
         .love-letter {
             background: linear-gradient(135deg, #FFFBFE 0%, #FFFFFF 100%);
             padding: 50px 40px;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1),
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12),
                         inset 0 1px 0 rgba(255, 255, 255, 0.8);
             position: relative;
-            border-left: 5px solid #FFB6D9;
+            border-left: 6px solid #FFB6D9;
             min-height: 500px;
             overflow-y: auto;
             scrollbar-width: thin;
             scrollbar-color: #FFB6D9 transparent;
+            border: 2px solid rgba(255, 182, 193, 0.2);
         }
 
         .love-letter::-webkit-scrollbar {
@@ -486,7 +720,7 @@
         }
 
         .love-letter::-webkit-scrollbar-thumb {
-            background: #FFB6D9;
+            background: linear-gradient(135deg, #FFB6D9 0%, #FF69B4 100%);
             border-radius: 3px;
         }
 
@@ -495,12 +729,16 @@
             color: #D9B6FF;
             margin-bottom: 20px;
             font-style: italic;
+            font-weight: 600;
         }
 
         .letter-greeting {
             font-size: 24px;
-            color: #FF69B4;
-            font-weight: 700;
+            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
             margin-bottom: 20px;
             letter-spacing: 1px;
         }
@@ -521,7 +759,7 @@
             margin-top: 30px;
             color: #FF69B4;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 700;
             text-align: right;
         }
 
@@ -534,7 +772,7 @@
 
         .decorative-line {
             position: absolute;
-            width: 30px;
+            width: 40px;
             height: 3px;
             background: linear-gradient(90deg, transparent, #FFB6D9, transparent);
             top: 35px;
@@ -543,7 +781,7 @@
 
         .floral-accent {
             position: absolute;
-            opacity: 0.1;
+            opacity: 0.08;
             pointer-events: none;
         }
 
@@ -565,7 +803,9 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #FFB6D9 0%, #FFB6D9 35%, #E6B3FF 65%, #E6B3FF 100%);
+            background: linear-gradient(45deg, #FFB6D9 0%, #FFD9E8 15%, #E6B3FF 35%, #D9B3FF 50%, #C9A0FF 70%, #FFB6D9 85%, #FFB6D9 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             padding: 20px;
             position: relative;
             overflow: hidden;
@@ -617,17 +857,17 @@
         .anniversary-card {
             background: linear-gradient(135deg, #FFFBFE 0%, #FFFFFF 100%);
             padding: 60px 40px;
-            border-radius: 20px;
-            box-shadow: 0 30px 80px rgba(255, 105, 180, 0.25),
+            border-radius: 25px;
+            box-shadow: 0 35px 80px rgba(255, 105, 180, 0.2),
                         inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            border: 3px solid rgba(255, 182, 193, 0.3);
+            border: 3px solid rgba(255, 182, 193, 0.25);
             position: relative;
         }
 
         .anniversary-card::before {
             content: '🎉';
             position: absolute;
-            top: -30px;
+            top: -35px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 60px;
@@ -635,9 +875,12 @@
         }
 
         .main-heading {
-            font-size: 44px;
-            color: #FF1493;
-            font-weight: 800;
+            font-size: 48px;
+            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
             margin-bottom: 20px;
             letter-spacing: 2px;
             animation: heartbeat 1.5s ease-in-out infinite;
@@ -647,7 +890,8 @@
             font-size: 18px;
             color: #D9B6FF;
             margin-bottom: 40px;
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
         .stats-grid {
@@ -658,17 +902,18 @@
         }
 
         .stat-box {
-            background: linear-gradient(135deg, #FFB6D9 0%, #FF69B4 100%);
+            background: linear-gradient(135deg, #FFB6D9 0%, #FF69B4 50%, #FF1493 100%);
             padding: 25px 15px;
             border-radius: 15px;
             color: white;
-            font-weight: 700;
-            font-size: 16px;
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
-            transform: perspective(1000px);
+            font-weight: 800;
+            font-size: 15px;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
             animation: fadeInUp 0.8s ease-out backwards;
             transition: all 0.3s ease;
             cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            letter-spacing: 0.5px;
         }
 
         .stat-box:nth-child(1) { animation-delay: 0.1s; }
@@ -680,16 +925,17 @@
         .stat-box:nth-child(7) { animation-delay: 0.7s; }
 
         .stat-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.5);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(255, 105, 180, 0.5);
         }
 
         .closing-message {
             font-size: 18px;
             color: #5A5A7A;
-            font-weight: 600;
+            font-weight: 700;
             margin: 30px 0;
             line-height: 1.6;
+            letter-spacing: 0.5px;
         }
 
         .hearts-decoration {
@@ -706,12 +952,13 @@
             font-size: 16px;
             border-radius: 50px;
             cursor: pointer;
-            font-weight: 700;
-            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.3);
+            font-weight: 800;
+            box-shadow: 0 15px 35px rgba(255, 20, 147, 0.35);
             transition: all 0.3s ease;
             letter-spacing: 1px;
             position: relative;
             overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
         .restart-btn::before {
@@ -721,7 +968,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.25);
             transition: 0.3s;
         }
 
@@ -730,8 +977,8 @@
         }
 
         .restart-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 20, 147, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(255, 20, 147, 0.5);
         }
 
         .restart-btn:active {
@@ -742,17 +989,19 @@
             position: absolute;
             top: 30px;
             right: 30px;
-            background: white;
-            width: 60px;
-            height: 60px;
+            background: linear-gradient(135deg, #FFB6D9 0%, #FF69B4 100%);
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-weight: 700;
-            color: #FF69B4;
-            font-size: 24px;
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            font-weight: 900;
+            color: white;
+            font-size: 26px;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            animation: float 3s ease-in-out infinite;
         }
 
         /* Responsive Design */
@@ -763,11 +1012,11 @@
             }
 
             .main-heading {
-                font-size: 32px;
+                font-size: 36px;
             }
 
             .entry-text {
-                font-size: 20px;
+                font-size: 18px;
             }
 
             .stats-grid {
@@ -788,6 +1037,14 @@
                 width: 140px;
                 height: 140px;
             }
+
+            .watermark {
+                font-size: 12px;
+            }
+
+            .illustration-side {
+                height: 300px;
+            }
         }
     </style>
 </head>
@@ -795,6 +1052,8 @@
 
 <!-- STEP 1: MAGICAL ENTRY -->
 <div class="step-1" id="step1" onclick="nextStep()">
+    <div class="blob-1"></div>
+    <div class="blob-2"></div>
     <div class="step-badge">1/3</div>
     
     <div class="floating-hearts heart-1">💕</div>
@@ -804,7 +1063,7 @@
     <div class="entry-container">
         <div class="cartoon-character">
             <div class="speech-bubble">
-                <div class="speech-text">Hey Tanaz, click me pls 💕</div>
+                <div class="speech-text">Hey Tanaz, Shabit wants you to click on me! 💕</div>
             </div>
 
             <div class="character-head">
@@ -838,24 +1097,72 @@
                 </div>
             </div>
         </div>
-        <div class="entry-text">Open Your Heart</div>
-        <div class="entry-subtext">Click the cute character to begin your journey 💕</div>
+        <div class="entry-text">Hey Tanaz, Shabit wants you to click on me</div>
+        <div class="entry-subtext">Begin your special journey 💕</div>
     </div>
+
+    <div class="watermark">Made by Shabit ✨</div>
 </div>
 
 <!-- STEP 2: LOVE LETTER -->
 <div class="step-2" id="step2" onclick="nextStep()">
+    <div class="blob-3"></div>
+    <div class="blob-4"></div>
     <div class="step-badge">2/3</div>
 
     <div class="page-wrapper">
-        <!-- Left Side -->
+        <!-- Left Side - Cute Characters -->
         <div class="illustration-side">
-            <div class="decorative-circle">
-                <div class="letter-emoji">💌</div>
+            <!-- Tanaz (Pink Character) -->
+            <div class="character-tanaz">
+                <div class="char-speech speech-tanaz" id="speech-tanaz">Blah blah! 💕</div>
+                <div class="char-head char-head-tanaz">
+                    <div class="char-eyes">
+                        <div class="char-eye">
+                            <div class="char-pupil"></div>
+                        </div>
+                        <div class="char-eye">
+                            <div class="char-pupil"></div>
+                        </div>
+                    </div>
+                    <div class="char-nose"></div>
+                    <div class="char-mouth"></div>
+                </div>
+                <div class="char-body char-body-tanaz">
+                    <div class="char-outfit outfit-tanaz">👗</div>
+                    <div class="char-arms">
+                        <div class="char-arm"></div>
+                        <div class="char-arm"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shabit (Blue Character) -->
+            <div class="character-shabit">
+                <div class="char-speech speech-shabit" id="speech-shabit">Hehe yay! 💙</div>
+                <div class="char-head char-head-shabit">
+                    <div class="char-eyes">
+                        <div class="char-eye">
+                            <div class="char-pupil"></div>
+                        </div>
+                        <div class="char-eye">
+                            <div class="char-pupil"></div>
+                        </div>
+                    </div>
+                    <div class="char-nose"></div>
+                    <div class="char-mouth"></div>
+                </div>
+                <div class="char-body char-body-shabit">
+                    <div class="char-outfit outfit-shabit">🎩</div>
+                    <div class="char-arms">
+                        <div class="char-arm char-arm-shabit"></div>
+                        <div class="char-arm char-arm-shabit"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Right Side -->
+        <!-- Right Side - Letter -->
         <div class="letter-content-wrapper">
             <div class="love-letter">
                 <div class="decorative-line"></div>
@@ -935,15 +1242,59 @@
 <script>
     let currentStep = 1;
 
+    // Gibberish phrases that will continuously change
+    const gibberishTanaz = [
+        "Blah blah! 💕",
+        "Yabba dabba! 🌸",
+        "Wheee! 💖",
+        "Hihihi! 😄",
+        "Bippity bop! ✨",
+        "Lalala! 🎀",
+        "Whoosh! 💕",
+        "Yay yay! 🌺",
+        "Beep boop! 💗",
+        "Zoom zoom! ⭐"
+    ];
+
+    const gibberishShabit = [
+        "Hehe yay! 💙",
+        "Woohoo! 🎉",
+        "Zippy zap! ⚡",
+        "Boop boop! 🎀",
+        "Hahahah! 😂",
+        "Zippity! 💕",
+        "Bleebleeblee! 🌟",
+        "Ahahah! 🎪",
+        "Wowee! 💙",
+        "Yahooo! 🎊"
+    ];
+
+    function changeGibberish() {
+        const randomIndexTanaz = Math.floor(Math.random() * gibberishTanaz.length);
+        const randomIndexShabit = Math.floor(Math.random() * gibberishShabit.length);
+        
+        document.getElementById('speech-tanaz').textContent = gibberishTanaz[randomIndexTanaz];
+        document.getElementById('speech-shabit').textContent = gibberishShabit[randomIndexShabit];
+    }
+
+    // Change gibberish every 2 seconds when on step 2
+    let gibberishInterval;
+
     function nextStep() {
         if (currentStep === 1) {
             document.getElementById('step1').style.display = 'none';
             document.getElementById('step2').style.display = 'flex';
             currentStep = 2;
+            
+            // Start gibberish changes
+            gibberishInterval = setInterval(changeGibberish, 2000);
         } else if (currentStep === 2) {
             document.getElementById('step2').style.display = 'none';
             document.getElementById('step3').style.display = 'flex';
             currentStep = 3;
+            
+            // Stop gibberish changes
+            clearInterval(gibberishInterval);
         }
     }
 
@@ -952,6 +1303,7 @@
         document.getElementById('step2').style.display = 'none';
         document.getElementById('step3').style.display = 'none';
         currentStep = 1;
+        clearInterval(gibberishInterval);
     }
 
     // Keyboard navigation
@@ -982,6 +1334,7 @@
             document.getElementById('step2').style.display = 'none';
             document.getElementById('step3').style.display = 'flex';
             currentStep = 3;
+            clearInterval(gibberishInterval);
             createMoreConfetti();
         } else {
             originalNextStep();
