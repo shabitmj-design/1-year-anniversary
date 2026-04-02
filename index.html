@@ -74,23 +74,9 @@
             50% { transform: scaleY(0.1); }
         }
 
-        @keyframes shimmer {
-            0% {
-                background-position: -1000px 0;
-            }
-            100% {
-                background-position: 1000px 0;
-            }
-        }
-
         @keyframes rotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
         }
 
         /* ===== STEP 1: MAGICAL ENTRY ===== */
@@ -496,77 +482,101 @@
             animation: fadeInUp 0.8s ease-out;
         }
 
-        /* Left Side - Cute Cartoon Characters */
+        /* Left Side - Cute Sitting Characters */
         .illustration-side {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-end;
             position: relative;
             height: 400px;
+            gap: 20px;
         }
 
-        /* Tanaz (Pink Character) */
-        .character-tanaz {
-            position: absolute;
-            left: 0;
+        /* Cute Character Sitting */
+        .cute-character {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
         }
 
-        /* Shabit (Blue Character) */
-        .character-shabit {
-            position: absolute;
-            right: 0;
+        .cute-character-tanaz {
+            animation-delay: 0s;
         }
 
-        /* Shared Character Styles */
-        .char-head {
-            width: 120px;
-            height: 120px;
+        .cute-character-shabit {
+            animation-delay: 0.5s;
+        }
+
+        /* Character Container for sitting position */
+        .sitting-char {
+            width: 140px;
+            height: 160px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Head */
+        .cute-head {
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            border: 3px solid rgba(255, 255, 255, 0.6);
-            margin-bottom: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15),
+                        inset -2px -2px 8px rgba(0, 0, 0, 0.1),
+                        inset 2px 2px 8px rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            margin-bottom: 10px;
         }
 
-        .char-head-tanaz {
+        .head-tanaz {
             background: linear-gradient(135deg, #FFB6D9 0%, #FF69B4 100%);
         }
 
-        .char-head-shabit {
+        .head-shabit {
             background: linear-gradient(135deg, #B3D9FF 0%, #69B4FF 100%);
         }
 
-        /* Character Eyes */
-        .char-eyes {
+        /* Cute Eyes */
+        .cute-eyes {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             position: absolute;
-            top: 35px;
+            top: 30px;
         }
 
-        .char-eye {
+        .cute-eye {
             width: 20px;
             height: 25px;
             background: white;
             border-radius: 50%;
-            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+            animation: blink 2s ease-in-out infinite;
         }
 
-        .char-pupil {
+        .cute-eye:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .cute-pupil {
             width: 12px;
             height: 15px;
-            background: black;
+            background: #FF1493;
             border-radius: 50%;
             position: relative;
         }
 
-        .char-pupil::after {
+        .cute-pupil::after {
             content: '';
             position: absolute;
             width: 4px;
@@ -574,121 +584,148 @@
             background: white;
             border-radius: 50%;
             top: 2px;
-            left: 3px;
+            left: 2px;
         }
 
-        /* Character Nose */
-        .char-nose {
+        .pupil-shabit {
+            background: #1E90FF;
+        }
+
+        /* Cute Nose */
+        .cute-nose {
             position: absolute;
-            width: 8px;
-            height: 8px;
-            background: rgba(0, 0, 0, 0.3);
+            width: 10px;
+            height: 10px;
+            background: rgba(0, 0, 0, 0.2);
             border-radius: 50%;
-            top: 60px;
+            top: 55px;
         }
 
-        /* Character Mouth */
-        .char-mouth {
+        /* Cute Mouth */
+        .cute-mouth {
             position: absolute;
-            width: 35px;
-            height: 20px;
-            bottom: 20px;
-            border: 2px solid rgba(0, 0, 0, 0.4);
+            width: 30px;
+            height: 18px;
+            bottom: 15px;
+            border: 2px solid #FF1493;
             border-top: none;
-            border-radius: 0 0 35px 35px;
+            border-radius: 0 0 30px 30px;
         }
 
-        /* Character Body */
-        .char-body {
-            width: 100px;
-            height: 140px;
-            border-radius: 40px 40px 50px 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        .mouth-shabit {
+            border-color: #1E90FF;
+        }
+
+        /* Rosy Cheeks */
+        .rosy-cheek {
+            position: absolute;
+            width: 18px;
+            height: 15px;
+            background: radial-gradient(circle, rgba(255, 182, 193, 0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 55px;
+        }
+
+        .cheek-left {
+            left: 12px;
+        }
+
+        .cheek-right {
+            right: 12px;
+        }
+
+        /* Body/Sitting Blob */
+        .cute-body {
+            width: 90px;
+            height: 80px;
+            border-radius: 50% 50% 70% 70%;
             position: relative;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12),
+                        inset -1px -1px 5px rgba(0, 0, 0, 0.05),
+                        inset 1px 1px 5px rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.5);
         }
 
-        .char-body-tanaz {
+        .body-tanaz {
             background: linear-gradient(135deg, #FFE4E1 0%, #FFB6D9 100%);
         }
 
-        .char-body-shabit {
+        .body-shabit {
             background: linear-gradient(135deg, #D9E8FF 0%, #B3D9FF 100%);
         }
 
-        /* Character Outfit */
-        .char-outfit {
-            width: 90px;
-            height: 70px;
-            border-radius: 20px 20px 30px 30px;
-            position: relative;
+        /* Outfit on body */
+        .tiny-outfit {
+            position: absolute;
+            width: 70px;
+            height: 50px;
+            border-radius: 30px 30px 40px 40px;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 30px;
+            font-size: 24px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
-        .outfit-tanaz {
+        .outfit-tanaz-pink {
             background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .outfit-shabit {
+        .outfit-shabit-blue {
             background: linear-gradient(135deg, #87CEEB 0%, #4169E1 100%);
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        /* Character Arms */
-        .char-arms {
+        /* Tiny Arms */
+        .tiny-arms {
             position: absolute;
-            width: 110px;
+            width: 95px;
             display: flex;
             justify-content: space-between;
-            top: 85px;
+            top: 55px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        .char-arm {
-            width: 30px;
-            height: 50px;
+        .tiny-arm {
+            width: 20px;
+            height: 35px;
             background: linear-gradient(135deg, rgba(255, 182, 193, 0.8) 0%, rgba(255, 105, 180, 0.8) 100%);
-            border-radius: 20px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            animation: wave 1.5s ease-in-out infinite;
         }
 
-        .char-arm-shabit {
+        .tiny-arm:nth-child(2) {
+            animation-delay: 0.2s;
+            animation-direction: reverse;
+        }
+
+        .arm-shabit-blue {
             background: linear-gradient(135deg, rgba(179, 217, 255, 0.8) 0%, rgba(105, 180, 255, 0.8) 100%);
         }
 
-        /* Speech Bubbles for Characters */
-        .char-speech {
+        /* Speech Bubbles */
+        .speech-char {
             position: absolute;
             background: white;
-            border-radius: 15px;
-            padding: 12px 18px;
-            font-size: 14px;
+            border-radius: 12px;
+            padding: 10px 15px;
+            font-size: 12px;
             font-weight: 700;
             color: #FF69B4;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
             white-space: nowrap;
-            min-width: 120px;
+            min-width: 90px;
             text-align: center;
             border: 2px solid rgba(255, 182, 193, 0.3);
+            top: -55px;
         }
 
-        .speech-tanaz {
-            top: -60px;
-            left: -30px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .speech-shabit {
-            top: -60px;
-            right: -30px;
-            color: #4169E1;
-            animation: float 3s ease-in-out infinite 0.5s;
+        .speech-shabit-blue {
+            color: #1E90FF;
         }
 
         /* Right Side - Letter Content */
@@ -1023,27 +1060,8 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .cartoon-character {
-                width: 250px;
-                height: 300px;
-            }
-
-            .character-body {
-                width: 160px;
-                height: 180px;
-            }
-
-            .character-head {
-                width: 140px;
-                height: 140px;
-            }
-
-            .watermark {
-                font-size: 12px;
-            }
-
             .illustration-side {
-                height: 300px;
+                height: 250px;
             }
         }
     </style>
@@ -1111,52 +1129,60 @@
     <div class="step-badge">2/3</div>
 
     <div class="page-wrapper">
-        <!-- Left Side - Cute Characters -->
+        <!-- Left Side - Cute Sitting Characters -->
         <div class="illustration-side">
             <!-- Tanaz (Pink Character) -->
-            <div class="character-tanaz">
-                <div class="char-speech speech-tanaz" id="speech-tanaz">Blah blah! 💕</div>
-                <div class="char-head char-head-tanaz">
-                    <div class="char-eyes">
-                        <div class="char-eye">
-                            <div class="char-pupil"></div>
+            <div class="cute-character cute-character-tanaz">
+                <div class="speech-char" id="speech-tanaz">Wheee! 💕</div>
+                <div class="sitting-char">
+                    <div class="cute-head head-tanaz">
+                        <div class="cute-eyes">
+                            <div class="cute-eye">
+                                <div class="cute-pupil"></div>
+                            </div>
+                            <div class="cute-eye">
+                                <div class="cute-pupil"></div>
+                            </div>
                         </div>
-                        <div class="char-eye">
-                            <div class="char-pupil"></div>
-                        </div>
+                        <div class="cute-nose"></div>
+                        <div class="cute-mouth"></div>
+                        <div class="rosy-cheek cheek-left"></div>
+                        <div class="rosy-cheek cheek-right"></div>
                     </div>
-                    <div class="char-nose"></div>
-                    <div class="char-mouth"></div>
-                </div>
-                <div class="char-body char-body-tanaz">
-                    <div class="char-outfit outfit-tanaz">👗</div>
-                    <div class="char-arms">
-                        <div class="char-arm"></div>
-                        <div class="char-arm"></div>
+                    <div class="cute-body body-tanaz">
+                        <div class="tiny-outfit outfit-tanaz-pink">👗</div>
+                        <div class="tiny-arms">
+                            <div class="tiny-arm"></div>
+                            <div class="tiny-arm"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Shabit (Blue Character) -->
-            <div class="character-shabit">
-                <div class="char-speech speech-shabit" id="speech-shabit">Hehe yay! 💙</div>
-                <div class="char-head char-head-shabit">
-                    <div class="char-eyes">
-                        <div class="char-eye">
-                            <div class="char-pupil"></div>
+            <div class="cute-character cute-character-shabit">
+                <div class="speech-char speech-shabit-blue" id="speech-shabit">Hehe! 💙</div>
+                <div class="sitting-char">
+                    <div class="cute-head head-shabit">
+                        <div class="cute-eyes">
+                            <div class="cute-eye">
+                                <div class="cute-pupil pupil-shabit"></div>
+                            </div>
+                            <div class="cute-eye">
+                                <div class="cute-pupil pupil-shabit"></div>
+                            </div>
                         </div>
-                        <div class="char-eye">
-                            <div class="char-pupil"></div>
-                        </div>
+                        <div class="cute-nose"></div>
+                        <div class="cute-mouth mouth-shabit"></div>
+                        <div class="rosy-cheek cheek-left"></div>
+                        <div class="rosy-cheek cheek-right"></div>
                     </div>
-                    <div class="char-nose"></div>
-                    <div class="char-mouth"></div>
-                </div>
-                <div class="char-body char-body-shabit">
-                    <div class="char-outfit outfit-shabit">🎩</div>
-                    <div class="char-arms">
-                        <div class="char-arm char-arm-shabit"></div>
-                        <div class="char-arm char-arm-shabit"></div>
+                    <div class="cute-body body-shabit">
+                        <div class="tiny-outfit outfit-shabit-blue">🎩</div>
+                        <div class="tiny-arms">
+                            <div class="tiny-arm arm-shabit-blue"></div>
+                            <div class="tiny-arm arm-shabit-blue"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1244,29 +1270,33 @@
 
     // Gibberish phrases that will continuously change
     const gibberishTanaz = [
-        "Blah blah! 💕",
-        "Yabba dabba! 🌸",
-        "Wheee! 💖",
+        "Wheee! 💕",
+        "Yabba! 🌸",
         "Hihihi! 😄",
-        "Bippity bop! ✨",
+        "Bippity! ✨",
         "Lalala! 🎀",
         "Whoosh! 💕",
-        "Yay yay! 🌺",
+        "Yay! 🌺",
         "Beep boop! 💗",
-        "Zoom zoom! ⭐"
+        "Zoom! ⭐",
+        "Blah! 🎉",
+        "Hehe! 💖",
+        "Tralala! 🌟"
     ];
 
     const gibberishShabit = [
-        "Hehe yay! 💙",
+        "Hehe! 💙",
         "Woohoo! 🎉",
-        "Zippy zap! ⚡",
-        "Boop boop! 🎀",
-        "Hahahah! 😂",
+        "Zippy! ⚡",
+        "Boop! 🎀",
+        "Hahaha! 😂",
         "Zippity! 💕",
-        "Bleebleeblee! 🌟",
+        "Bleeee! 🌟",
         "Ahahah! 🎪",
         "Wowee! 💙",
-        "Yahooo! 🎊"
+        "Yahooo! 🎊",
+        "Boing! 🎈",
+        "Wheee! ✨"
     ];
 
     function changeGibberish() {
@@ -1277,7 +1307,7 @@
         document.getElementById('speech-shabit').textContent = gibberishShabit[randomIndexShabit];
     }
 
-    // Change gibberish every 2 seconds when on step 2
+    // Change gibberish every 1 second when on step 2
     let gibberishInterval;
 
     function nextStep() {
@@ -1286,8 +1316,8 @@
             document.getElementById('step2').style.display = 'flex';
             currentStep = 2;
             
-            // Start gibberish changes
-            gibberishInterval = setInterval(changeGibberish, 2000);
+            // Start gibberish changes every 1 second
+            gibberishInterval = setInterval(changeGibberish, 1000);
         } else if (currentStep === 2) {
             document.getElementById('step2').style.display = 'none';
             document.getElementById('step3').style.display = 'flex';
