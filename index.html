@@ -482,249 +482,273 @@
             animation: fadeInUp 0.8s ease-out;
         }
 
-        /* Left Side - Cute Sitting Characters */
+        /* Left Side - Two Characters Sitting Together */
         .illustration-side {
             display: flex;
             justify-content: center;
-            align-items: flex-end;
+            align-items: center;
             position: relative;
             height: 400px;
-            gap: 20px;
+            gap: 10px;
         }
 
-        /* Cute Character Sitting */
-        .cute-character {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .character-sitting {
+            width: 160px;
+            height: 220px;
             position: relative;
             animation: float 3s ease-in-out infinite;
         }
 
-        .cute-character-tanaz {
+        .char-sit-tanaz {
             animation-delay: 0s;
         }
 
-        .cute-character-shabit {
+        .char-sit-shabit {
             animation-delay: 0.5s;
         }
 
-        /* Character Container for sitting position */
-        .sitting-char {
-            width: 140px;
-            height: 160px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Head */
-        .cute-head {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15),
-                        inset -2px -2px 8px rgba(0, 0, 0, 0.1),
-                        inset 2px 2px 8px rgba(255, 255, 255, 0.3);
+        /* Character sitting body */
+        .char-sit-body {
+            position: absolute;
+            width: 120px;
+            height: 130px;
+            background: linear-gradient(135deg, #FFE4E1 0%, #FFB6D9 50%, #FFB6D9 100%);
+            border-radius: 40px 40px 50px 50px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2),
+                        inset -3px -3px 10px rgba(255, 105, 180, 0.1),
+                        inset 3px 3px 10px rgba(255, 255, 255, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.6);
-            margin-bottom: 10px;
         }
 
-        .head-tanaz {
-            background: linear-gradient(135deg, #FFB6D9 0%, #FF69B4 100%);
+        .sit-body-shabit {
+            background: linear-gradient(135deg, #D9E8FF 0%, #B3D9FF 50%, #B3D9FF 100%);
         }
 
-        .head-shabit {
-            background: linear-gradient(135deg, #B3D9FF 0%, #69B4FF 100%);
+        /* Character sitting head */
+        .char-sit-head {
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            background: linear-gradient(135deg, #FFE4E1 0%, #FFB6D9 100%);
+            border-radius: 50%;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2),
+                        inset -2px -2px 8px rgba(255, 105, 180, 0.1),
+                        inset 2px 2px 8px rgba(255, 255, 255, 0.35);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Cute Eyes */
-        .cute-eyes {
+        .sit-head-shabit {
+            background: linear-gradient(135deg, #D9E8FF 0%, #B3D9FF 100%);
+        }
+
+        /* Sitting character eyes */
+        .sit-eyes {
             display: flex;
             gap: 25px;
             position: absolute;
             top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        .cute-eye {
-            width: 20px;
-            height: 25px;
+        .sit-eye {
+            width: 25px;
+            height: 32px;
             background: white;
             border-radius: 50%;
+            box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
-            animation: blink 2s ease-in-out infinite;
         }
 
-        .cute-eye:nth-child(2) {
-            animation-delay: 0.1s;
-        }
-
-        .cute-pupil {
-            width: 12px;
-            height: 15px;
-            background: #FF1493;
+        .sit-pupil {
+            width: 16px;
+            height: 22px;
+            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
             border-radius: 50%;
             position: relative;
         }
 
-        .cute-pupil::after {
+        .sit-pupil::after {
             content: '';
             position: absolute;
-            width: 4px;
-            height: 5px;
+            width: 6px;
+            height: 8px;
             background: white;
             border-radius: 50%;
-            top: 2px;
-            left: 2px;
+            top: 3px;
+            left: 5px;
         }
 
-        .pupil-shabit {
-            background: #1E90FF;
+        .sit-pupil-blue {
+            background: linear-gradient(135deg, #69B4FF 0%, #1E90FF 100%);
         }
 
-        /* Cute Nose */
-        .cute-nose {
+        .sit-eye-left { animation: blink 2s ease-in-out infinite; }
+        .sit-eye-right { animation: blink 2s ease-in-out infinite 0.1s; }
+
+        /* Sitting character nose */
+        .sit-nose {
             position: absolute;
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             background: rgba(0, 0, 0, 0.2);
             border-radius: 50%;
-            top: 55px;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        /* Cute Mouth */
-        .cute-mouth {
+        /* Sitting character mouth */
+        .sit-mouth {
             position: absolute;
-            width: 30px;
-            height: 18px;
+            width: 38px;
+            height: 22px;
             bottom: 15px;
-            border: 2px solid #FF1493;
-            border-top: none;
-            border-radius: 0 0 30px 30px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        .mouth-shabit {
+        .sit-mouth-smile {
+            width: 100%;
+            height: 100%;
+            border: 3px solid #FF1493;
+            border-top: none;
+            border-radius: 0 0 40px 40px;
+            position: relative;
+        }
+
+        .sit-mouth-smile-blue {
             border-color: #1E90FF;
         }
 
-        /* Rosy Cheeks */
-        .rosy-cheek {
+        .sit-tongue {
             position: absolute;
             width: 18px;
-            height: 15px;
-            background: radial-gradient(circle, rgba(255, 182, 193, 0.4) 0%, transparent 70%);
+            height: 10px;
+            background: linear-gradient(135deg, #FF69B4 0%, #FFB6D9 100%);
+            border-radius: 0 0 12px 12px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Sitting character ears */
+        .sit-ear {
+            position: absolute;
+            width: 32px;
+            height: 38px;
+            background: linear-gradient(135deg, #FFB6D9 0%, #FF69B4 100%);
             border-radius: 50%;
-            top: 55px;
+            top: -5px;
+            box-shadow: inset 0 0 8px rgba(255, 105, 180, 0.3),
+                        0 3px 10px rgba(255, 105, 180, 0.2);
         }
 
-        .cheek-left {
-            left: 12px;
+        .sit-ear-blue {
+            background: linear-gradient(135deg, #B3D9FF 0%, #69B4FF 100%);
         }
 
-        .cheek-right {
-            right: 12px;
+        .sit-ear-left {
+            left: 10px;
+            animation: wave 2s ease-in-out infinite;
         }
 
-        /* Body/Sitting Blob */
-        .cute-body {
-            width: 90px;
-            height: 80px;
-            border-radius: 50% 50% 70% 70%;
-            position: relative;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12),
-                        inset -1px -1px 5px rgba(0, 0, 0, 0.05),
-                        inset 1px 1px 5px rgba(255, 255, 255, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.5);
+        .sit-ear-right {
+            right: 10px;
+            animation: wave 2s ease-in-out infinite 0.3s;
         }
 
-        .body-tanaz {
+        .sit-ear::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 18px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Sitting character arms */
+        .sit-arm {
+            position: absolute;
+            width: 28px;
+            height: 70px;
             background: linear-gradient(135deg, #FFE4E1 0%, #FFB6D9 100%);
+            border-radius: 30px;
+            top: 95px;
+            box-shadow: 0 3px 10px rgba(255, 105, 180, 0.15),
+                        inset -1px 0 3px rgba(255, 105, 180, 0.1);
         }
 
-        .body-shabit {
+        .sit-arm-blue {
             background: linear-gradient(135deg, #D9E8FF 0%, #B3D9FF 100%);
         }
 
-        /* Outfit on body */
-        .tiny-outfit {
-            position: absolute;
-            width: 70px;
-            height: 50px;
-            border-radius: 30px 30px 40px 40px;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .outfit-tanaz-pink {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-        }
-
-        .outfit-shabit-blue {
-            background: linear-gradient(135deg, #87CEEB 0%, #4169E1 100%);
-        }
-
-        /* Tiny Arms */
-        .tiny-arms {
-            position: absolute;
-            width: 95px;
-            display: flex;
-            justify-content: space-between;
-            top: 55px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .tiny-arm {
-            width: 20px;
-            height: 35px;
-            background: linear-gradient(135deg, rgba(255, 182, 193, 0.8) 0%, rgba(255, 105, 180, 0.8) 100%);
-            border-radius: 15px;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        .sit-arm-left {
+            left: -15px;
             animation: wave 1.5s ease-in-out infinite;
+            transform-origin: top center;
         }
 
-        .tiny-arm:nth-child(2) {
-            animation-delay: 0.2s;
-            animation-direction: reverse;
+        .sit-arm-right {
+            right: -15px;
+            animation: wave 1.5s ease-in-out infinite 0.2s reverse;
+            transform-origin: top center;
         }
 
-        .arm-shabit-blue {
-            background: linear-gradient(135deg, rgba(179, 217, 255, 0.8) 0%, rgba(105, 180, 255, 0.8) 100%);
+        /* Character name labels */
+        .char-name {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
         }
 
-        /* Speech Bubbles */
-        .speech-char {
+        .name-tanaz {
+            color: #FF69B4;
+        }
+
+        .name-shabit {
+            color: #1E90FF;
+        }
+
+        /* Speech bubbles for sitting characters */
+        .sit-speech {
             position: absolute;
             background: white;
             border-radius: 12px;
-            padding: 10px 15px;
-            font-size: 12px;
+            padding: 8px 12px;
+            font-size: 11px;
             font-weight: 700;
             color: #FF69B4;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
-            white-space: nowrap;
-            min-width: 90px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+            white-space: normal;
+            max-width: 95px;
             text-align: center;
             border: 2px solid rgba(255, 182, 193, 0.3);
-            top: -55px;
+            top: -70px;
+            animation: float 3s ease-in-out infinite;
+            line-height: 1.2;
         }
 
-        .speech-shabit-blue {
+        .sit-speech-shabit {
             color: #1E90FF;
         }
 
@@ -1129,61 +1153,69 @@
     <div class="step-badge">2/3</div>
 
     <div class="page-wrapper">
-        <!-- Left Side - Cute Sitting Characters -->
+        <!-- Left Side - Two Cute Characters Sitting -->
         <div class="illustration-side">
-            <!-- Tanaz (Pink Character) -->
-            <div class="cute-character cute-character-tanaz">
-                <div class="speech-char" id="speech-tanaz">Wheee! 💕</div>
-                <div class="sitting-char">
-                    <div class="cute-head head-tanaz">
-                        <div class="cute-eyes">
-                            <div class="cute-eye">
-                                <div class="cute-pupil"></div>
-                            </div>
-                            <div class="cute-eye">
-                                <div class="cute-pupil"></div>
-                            </div>
+            <!-- Tanaz Character -->
+            <div class="character-sitting char-sit-tanaz">
+                <div class="char-name name-tanaz">TANAZ 💕</div>
+                <div class="sit-speech" id="speech-tanaz">I got teaaa</div>
+                <div class="char-sit-head">
+                    <div class="sit-ear sit-ear-left"></div>
+                    <div class="sit-ear sit-ear-right"></div>
+                    
+                    <div class="sit-eyes">
+                        <div class="sit-eye sit-eye-left">
+                            <div class="sit-pupil"></div>
                         </div>
-                        <div class="cute-nose"></div>
-                        <div class="cute-mouth"></div>
-                        <div class="rosy-cheek cheek-left"></div>
-                        <div class="rosy-cheek cheek-right"></div>
+                        <div class="sit-eye sit-eye-right">
+                            <div class="sit-pupil"></div>
+                        </div>
                     </div>
-                    <div class="cute-body body-tanaz">
-                        <div class="tiny-outfit outfit-tanaz-pink">👗</div>
-                        <div class="tiny-arms">
-                            <div class="tiny-arm"></div>
-                            <div class="tiny-arm"></div>
+
+                    <div class="sit-nose"></div>
+
+                    <div class="sit-mouth">
+                        <div class="sit-mouth-smile">
+                            <div class="sit-tongue"></div>
                         </div>
                     </div>
                 </div>
+
+                <div class="char-sit-body">
+                    <div class="sit-arm sit-arm-left"></div>
+                    <div class="sit-arm sit-arm-right"></div>
+                </div>
             </div>
 
-            <!-- Shabit (Blue Character) -->
-            <div class="cute-character cute-character-shabit">
-                <div class="speech-char speech-shabit-blue" id="speech-shabit">Hehe! 💙</div>
-                <div class="sitting-char">
-                    <div class="cute-head head-shabit">
-                        <div class="cute-eyes">
-                            <div class="cute-eye">
-                                <div class="cute-pupil pupil-shabit"></div>
-                            </div>
-                            <div class="cute-eye">
-                                <div class="cute-pupil pupil-shabit"></div>
-                            </div>
+            <!-- Shabit Character -->
+            <div class="character-sitting char-sit-shabit">
+                <div class="char-name name-shabit">SHABIT 💙</div>
+                <div class="sit-speech sit-speech-shabit" id="speech-shabit">Tell meee Gurlll</div>
+                <div class="char-sit-head sit-head-shabit">
+                    <div class="sit-ear sit-ear-left sit-ear-blue"></div>
+                    <div class="sit-ear sit-ear-right sit-ear-blue"></div>
+                    
+                    <div class="sit-eyes">
+                        <div class="sit-eye sit-eye-left">
+                            <div class="sit-pupil sit-pupil-blue"></div>
                         </div>
-                        <div class="cute-nose"></div>
-                        <div class="cute-mouth mouth-shabit"></div>
-                        <div class="rosy-cheek cheek-left"></div>
-                        <div class="rosy-cheek cheek-right"></div>
-                    </div>
-                    <div class="cute-body body-shabit">
-                        <div class="tiny-outfit outfit-shabit-blue">🎩</div>
-                        <div class="tiny-arms">
-                            <div class="tiny-arm arm-shabit-blue"></div>
-                            <div class="tiny-arm arm-shabit-blue"></div>
+                        <div class="sit-eye sit-eye-right">
+                            <div class="sit-pupil sit-pupil-blue"></div>
                         </div>
                     </div>
+
+                    <div class="sit-nose"></div>
+
+                    <div class="sit-mouth">
+                        <div class="sit-mouth-smile sit-mouth-smile-blue">
+                            <div class="sit-tongue"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="char-sit-body sit-body-shabit">
+                    <div class="sit-arm sit-arm-left sit-arm-blue"></div>
+                    <div class="sit-arm sit-arm-right sit-arm-blue"></div>
                 </div>
             </div>
         </div>
@@ -1268,47 +1300,33 @@
 <script>
     let currentStep = 1;
 
-    // Gibberish phrases that will continuously change
-    const gibberishTanaz = [
-        "Wheee! 💕",
-        "Yabba! 🌸",
-        "Hihihi! 😄",
-        "Bippity! ✨",
-        "Lalala! 🎀",
-        "Whoosh! 💕",
-        "Yay! 🌺",
-        "Beep boop! 💗",
-        "Zoom! ⭐",
-        "Blah! 🎉",
-        "Hehe! 💖",
-        "Tralala! 🌟"
+    // Dialogue for Tanaz
+    const tanazLines = [
+        "I got teaaa",
+        "Sybau i know your gay",
+        "Bleh"
     ];
 
-    const gibberishShabit = [
-        "Hehe! 💙",
-        "Woohoo! 🎉",
-        "Zippy! ⚡",
-        "Boop! 🎀",
-        "Hahaha! 😂",
-        "Zippity! 💕",
-        "Bleeee! 🌟",
-        "Ahahah! 🎪",
-        "Wowee! 💙",
-        "Yahooo! 🎊",
-        "Boing! 🎈",
-        "Wheee! ✨"
+    // Dialogue for Shabit
+    const shabitLines = [
+        "Tell meee Gurlll",
+        "No i am nott",
+        "Atleast i Can play chess"
     ];
 
-    function changeGibberish() {
-        const randomIndexTanaz = Math.floor(Math.random() * gibberishTanaz.length);
-        const randomIndexShabit = Math.floor(Math.random() * gibberishShabit.length);
+    let tanazIndex = 0;
+    let shabitIndex = 0;
+
+    function changeDialogue() {
+        document.getElementById('speech-tanaz').textContent = tanazLines[tanazIndex];
+        document.getElementById('speech-shabit').textContent = shabitLines[shabitIndex];
         
-        document.getElementById('speech-tanaz').textContent = gibberishTanaz[randomIndexTanaz];
-        document.getElementById('speech-shabit').textContent = gibberishShabit[randomIndexShabit];
+        tanazIndex = (tanazIndex + 1) % tanazLines.length;
+        shabitIndex = (shabitIndex + 1) % shabitLines.length;
     }
 
-    // Change gibberish every 1 second when on step 2
-    let gibberishInterval;
+    // Change dialogue every 1 second when on step 2
+    let dialogueInterval;
 
     function nextStep() {
         if (currentStep === 1) {
@@ -1316,15 +1334,15 @@
             document.getElementById('step2').style.display = 'flex';
             currentStep = 2;
             
-            // Start gibberish changes every 1 second
-            gibberishInterval = setInterval(changeGibberish, 1000);
+            // Start dialogue changes every 1 second
+            dialogueInterval = setInterval(changeDialogue, 1000);
         } else if (currentStep === 2) {
             document.getElementById('step2').style.display = 'none';
             document.getElementById('step3').style.display = 'flex';
             currentStep = 3;
             
-            // Stop gibberish changes
-            clearInterval(gibberishInterval);
+            // Stop dialogue changes
+            clearInterval(dialogueInterval);
         }
     }
 
@@ -1333,7 +1351,9 @@
         document.getElementById('step2').style.display = 'none';
         document.getElementById('step3').style.display = 'none';
         currentStep = 1;
-        clearInterval(gibberishInterval);
+        clearInterval(dialogueInterval);
+        tanazIndex = 0;
+        shabitIndex = 0;
     }
 
     // Keyboard navigation
@@ -1364,7 +1384,7 @@
             document.getElementById('step2').style.display = 'none';
             document.getElementById('step3').style.display = 'flex';
             currentStep = 3;
-            clearInterval(gibberishInterval);
+            clearInterval(dialogueInterval);
             createMoreConfetti();
         } else {
             originalNextStep();
