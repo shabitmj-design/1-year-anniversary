@@ -192,60 +192,120 @@
             background: linear-gradient(90deg, #FFB6D9 0%, #FFB6D9 30%, #D9B6FF 70%, #D9B6FF 100%);
             padding: 20px;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .letter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Cherry Blossom Tree */
+        .tree-container {
+            position: relative;
+            width: 250px;
+            height: 400px;
+            flex-shrink: 0;
+        }
+
+        .tree-trunk {
+            width: 30px;
+            height: 200px;
+            background: linear-gradient(90deg, #8B6F47 0%, #A0826D 50%, #8B6F47 100%);
+            margin: 150px auto 0;
+            border-radius: 15px;
+            box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .tree-crown {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle at 30% 30%, #FF69B4, #FF1493);
+            border-radius: 50%;
+            margin: -100px auto 0;
+            box-shadow: 0 10px 30px rgba(255, 107, 153, 0.3);
+            position: relative;
+        }
+
+        .tree-crown::before {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle at 30% 30%, #FFB6D9, #FF69B4);
+            border-radius: 50%;
+            top: -40px;
+            left: 25px;
+            box-shadow: 0 5px 20px rgba(255, 107, 153, 0.2);
+        }
+
+        .tree-crown::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle at 70% 70%, #FFB6D9, #FF69B4);
+            border-radius: 50%;
+            bottom: -40px;
+            right: 25px;
+            box-shadow: 0 5px 20px rgba(255, 107, 153, 0.2);
+        }
+
+        /* Falling Cherry Blossoms */
+        .falling-petals {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .petal {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #FFB6D9;
+            border-radius: 50% 0 50% 50%;
+            opacity: 0.8;
+        }
+
+        .petal:nth-child(1) { animation: fall-petal 8s linear infinite; left: 20%; }
+        .petal:nth-child(2) { animation: fall-petal 10s linear infinite 2s; left: 40%; }
+        .petal:nth-child(3) { animation: fall-petal 9s linear infinite 1s; left: 60%; }
+        .petal:nth-child(4) { animation: fall-petal 11s linear infinite 3s; left: 80%; }
+        .petal:nth-child(5) { animation: fall-petal 9.5s linear infinite 1.5s; left: 30%; }
+
+        @keyframes fall-petal {
+            0% {
+                top: -30px;
+                opacity: 1;
+                transform: rotateZ(0deg);
+            }
+            50% {
+                transform: rotateZ(180deg);
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+                transform: rotateZ(360deg);
+            }
         }
 
         .letter-container {
             position: relative;
             width: 100%;
-            max-width: 600px;
+            max-width: 500px;
             animation: slideIn 0.8s ease-out;
-        }
-
-        .flower {
-            position: absolute;
-            opacity: 0.7;
-        }
-
-        .flower-1 {
-            top: 20px;
-            left: 20px;
-            width: 60px;
-            height: 60px;
-            animation: rotate 6s linear infinite;
-        }
-
-        .flower-2 {
-            top: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            animation: rotate 7s linear infinite reverse;
-        }
-
-        .flower-3 {
-            bottom: 40px;
-            left: 40px;
-            width: 55px;
-            height: 55px;
-            animation: rotate 5s linear infinite;
-        }
-
-        .flower-4 {
-            bottom: 30px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            animation: rotate 8s linear infinite reverse;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
 
         .letter-paper {
             background: linear-gradient(135deg, #FFFACD 0%, #FFFACD 100%);
-            padding: 60px 50px;
+            padding: 60px 45px;
             border-radius: 10px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
             position: relative;
@@ -253,6 +313,7 @@
             border: 2px solid #FFD9E8;
             line-height: 1.8;
             text-align: justify;
+            min-height: 500px;
         }
 
         .letter-paper::before {
@@ -274,34 +335,78 @@
             border-radius: 10px;
         }
 
+        /* Decorative flowers inside letter */
+        .letter-flower-decoration {
+            position: absolute;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .letter-flower-1 {
+            top: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            animation: rotate 8s linear infinite;
+        }
+
+        .letter-flower-2 {
+            bottom: 30px;
+            left: 15px;
+            width: 70px;
+            height: 70px;
+            animation: rotate 10s linear infinite reverse;
+        }
+
+        .letter-flower-3 {
+            top: 40%;
+            right: -30px;
+            width: 60px;
+            height: 60px;
+            animation: rotate 7s linear infinite;
+        }
+
+        .letter-flower-4 {
+            bottom: 20%;
+            left: -25px;
+            width: 65px;
+            height: 65px;
+            animation: rotate 9s linear infinite reverse;
+        }
+
         .letter-content {
             position: relative;
             z-index: 3;
             color: #FF1493;
-            font-size: 16px;
+            font-size: 14px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .letter-greeting {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: #FF69B4;
         }
 
         .letter-text {
             color: #C71585;
-            font-size: 15px;
-            line-height: 2;
+            font-size: 13px;
+            line-height: 1.6;
         }
 
         .letter-sign {
-            margin-top: 30px;
+            margin-top: 20px;
             text-align: right;
             color: #FF1493;
-            font-size: 18px;
+            font-size: 15px;
             font-weight: bold;
             font-style: italic;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         @keyframes slideIn {
@@ -442,6 +547,31 @@
             font-weight: bold;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
+
+        @media (max-width: 768px) {
+            .letter-wrapper {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .tree-container {
+                width: 150px;
+                height: 250px;
+            }
+
+            .letter-paper {
+                padding: 40px 30px;
+                min-height: auto;
+            }
+
+            .letter-content {
+                font-size: 12px;
+            }
+
+            .letter-text {
+                font-size: 11px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -471,60 +601,75 @@
 <!-- STEP 2: LETTER -->
 <div class="step-2" id="step2" onclick="nextStep()">
     <div class="step-indicator">Step 2/3</div>
-    <div class="letter-container">
-        <!-- Flowers decoration -->
-        <svg class="flower flower-1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="8" fill="#FFB6D9"/>
-            <circle cx="50" cy="20" r="15" fill="#FF69B4"/>
-            <circle cx="80" cy="35" r="15" fill="#FF69B4"/>
-            <circle cx="80" cy="65" r="15" fill="#FF69B4"/>
-            <circle cx="50" cy="80" r="15" fill="#FF69B4"/>
-            <circle cx="20" cy="65" r="15" fill="#FF69B4"/>
-            <circle cx="20" cy="35" r="15" fill="#FF69B4"/>
-        </svg>
-
-        <svg class="flower flower-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="8" fill="#FFB6D9"/>
-            <circle cx="50" cy="20" r="15" fill="#FF69B4"/>
-            <circle cx="80" cy="35" r="15" fill="#FF69B4"/>
-            <circle cx="80" cy="65" r="15" fill="#FF69B4"/>
-            <circle cx="50" cy="80" r="15" fill="#FF69B4"/>
-            <circle cx="20" cy="65" r="15" fill="#FF69B4"/>
-            <circle cx="20" cy="35" r="15" fill="#FF69B4"/>
-        </svg>
-
-        <svg class="flower flower-3" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="8" fill="#FFB6D9"/>
-            <circle cx="50" cy="20" r="15" fill="#FF69B4"/>
-            <circle cx="80" cy="35" r="15" fill="#FF69B4"/>
-            <circle cx="80" cy="65" r="15" fill="#FF69B4"/>
-            <circle cx="50" cy="80" r="15" fill="#FF69B4"/>
-            <circle cx="20" cy="65" r="15" fill="#FF69B4"/>
-            <circle cx="20" cy="35" r="15" fill="#FF69B4"/>
-        </svg>
-
-        <svg class="flower flower-4" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="8" fill="#FFB6D9"/>
-            <circle cx="50" cy="20" r="15" fill="#FF69B4"/>
-            <circle cx="80" cy="35" r="15" fill="#FF69B4"/>
-            <circle cx="80" cy="65" r="15" fill="#FF69B4"/>
-            <circle cx="50" cy="80" r="15" fill="#FF69B4"/>
-            <circle cx="20" cy="65" r="15" fill="#FF69B4"/>
-            <circle cx="20" cy="35" r="15" fill="#FF69B4"/>
-        </svg>
+    <div class="letter-wrapper">
+        <!-- Cherry Blossom Tree -->
+        <div class="tree-container">
+            <div class="falling-petals" id="petals-container">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+            </div>
+            <div class="tree-crown"></div>
+            <div class="tree-trunk"></div>
+        </div>
 
         <!-- Letter -->
-        <div class="letter-paper">
-            <div class="letter-content">
-                <div class="letter-greeting">Tanaz,</div>
-                <div class="letter-text">
-                    The day i met you, i didnt think much of it. I had no idea that little by little you'd become someone so important to me. Somehow without realizing how we grow closer every day until you werent just my best friend but my sister my family. we talked for hours and never got tired of it. We played games, shared secrets, laughed about the smallest things and built something that genuinely mattered to me. Those moments still live in my heart.
-                    <br><br>
-                    But i made mistakes, mistakes that u cant erase, no matter how much i wish i could. And i regret them deeply. If i could go back in time i would stop myself from ever hurting what we had. Please forgive me for everything i did in the past. I know i cant change whats already done and i foolishly thought i could everything in the present without realizing the past shapes it too.
-                    <br><br>
-                    I miss the old days more than i can explain. I really love our friendship Tanaz. 💕
+        <div class="letter-container">
+            <!-- Decorative flowers (very subtle background) -->
+            <svg class="letter-flower-decoration letter-flower-1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="8" fill="#FFB6D9"/>
+                <circle cx="50" cy="20" r="15" fill="#FF69B4"/>
+                <circle cx="80" cy="35" r="15" fill="#FF69B4"/>
+                <circle cx="80" cy="65" r="15" fill="#FF69B4"/>
+                <circle cx="50" cy="80" r="15" fill="#FF69B4"/>
+                <circle cx="20" cy="65" r="15" fill="#FF69B4"/>
+                <circle cx="20" cy="35" r="15" fill="#FF69B4"/>
+            </svg>
+
+            <svg class="letter-flower-decoration letter-flower-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="8" fill="#FFB6D9"/>
+                <circle cx="50" cy="20" r="15" fill="#FF69B4"/>
+                <circle cx="80" cy="35" r="15" fill="#FF69B4"/>
+                <circle cx="80" cy="65" r="15" fill="#FF69B4"/>
+                <circle cx="50" cy="80" r="15" fill="#FF69B4"/>
+                <circle cx="20" cy="65" r="15" fill="#FF69B4"/>
+                <circle cx="20" cy="35" r="15" fill="#FF69B4"/>
+            </svg>
+
+            <svg class="letter-flower-decoration letter-flower-3" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="8" fill="#FFB6D9"/>
+                <circle cx="50" cy="20" r="15" fill="#FF69B4"/>
+                <circle cx="80" cy="35" r="15" fill="#FF69B4"/>
+                <circle cx="80" cy="65" r="15" fill="#FF69B4"/>
+                <circle cx="50" cy="80" r="15" fill="#FF69B4"/>
+                <circle cx="20" cy="65" r="15" fill="#FF69B4"/>
+                <circle cx="20" cy="35" r="15" fill="#FF69B4"/>
+            </svg>
+
+            <svg class="letter-flower-decoration letter-flower-4" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="8" fill="#FFB6D9"/>
+                <circle cx="50" cy="20" r="15" fill="#FF69B4"/>
+                <circle cx="80" cy="35" r="15" fill="#FF69B4"/>
+                <circle cx="80" cy="65" r="15" fill="#FF69B4"/>
+                <circle cx="50" cy="80" r="15" fill="#FF69B4"/>
+                <circle cx="20" cy="65" r="15" fill="#FF69B4"/>
+                <circle cx="20" cy="35" r="15" fill="#FF69B4"/>
+            </svg>
+
+            <div class="letter-paper">
+                <div class="letter-content">
+                    <div class="letter-greeting">Tanaz,</div>
+                    <div class="letter-text">
+                        The day i met you, i didnt think much of it. I had no idea that little by little you'd become someone so important to me. Somehow without realizing how we grow closer every day until you werent just my best friend but my sister my family. we talked for hours and never got tired of it. We played games, shared secrets, laughed about the smallest things and built something that genuinely mattered to me. Those moments still live in my heart.
+                        <br><br>
+                        But i made mistakes, mistakes that u cant erase, no matter how much i wish i could. And i regret them deeply. If i could go back in time i would stop myself from ever hurting what we had. Please forgive me for everything i did in the past. I know i cant change whats already done and i foolishly thought i could everything in the present without realizing the past shapes it too.
+                        <br><br>
+                        I miss the old days more than i can explain. I really love our friendship Tanaz. 💕
+                    </div>
+                    <div class="letter-sign">With Love,<br>Shabit 💗</div>
                 </div>
-                <div class="letter-sign">With Love,<br>Shabit 💗</div>
             </div>
         </div>
     </div>
